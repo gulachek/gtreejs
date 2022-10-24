@@ -1,5 +1,5 @@
 {
-  "name": "gtree",
+  "name": "@gulachek/gtree",
   "version": "0.1.0",
   "description": "library for converting js objects to/from gtree encoding",
   "main": "dist/index.js",
