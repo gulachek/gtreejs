@@ -1,0 +1,36 @@
+{
+  "name": "gtree",
+  "version": "0.1.0",
+  "description": "library for converting js objects to/from gtree encoding",
+  "main": "dist/index.js",
+  "types": "types/index.d.ts",
+  "scripts": {
+    "test": "mocha --recursive 'dist/spec/*.js'"
+  },
+  "keywords": [
+    "encoding",
+    "gtree",
+    "decode",
+    "decoding",
+    "encode",
+    "tree",
+    "serialize",
+    "deserialize",
+    "serialization",
+    "deserialization",
+    "binary",
+    "integration"
+  ],
+  "author": "Nicholas Gulachek",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.3.3",
+    "@types/mocha": "^10.0.0",
+    "chai": "^4.3.0",
+    "mocha": "^10.1.0",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "@types/node": "^18.11.3"
+  }
+}
