@@ -1,4 +1,4 @@
-export type EncodedValue = Uint8Array | Buffer;
+export type EncodedValue = Uint8Array;
 
 export interface IDecodableTree
 {

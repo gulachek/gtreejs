@@ -12,7 +12,7 @@ export const Unsigned: ITreeable<number> = {
 			n >>= 8;
 		}
 
-		return { value: Buffer.from(val), children: []};
+		return { value: Uint8Array.from(val), children: []};
 	},
 
 	gtreeDecode(tr: IDecodableTree): number

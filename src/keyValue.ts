@@ -44,7 +44,7 @@ export class KeyValue<TKeyVal> implements ITreeable<TKeyVal>
 			children.push(tup.gtreeEncode({key: k, val: obj[k]}));
 		}
 
-		return {value: Buffer.alloc(0), children: children};
+		return {value: new Uint8Array(), children: children};
 	}
 
 	gtreeDecode(tr: IDecodableTree): TKeyVal

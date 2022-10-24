@@ -1,7 +1,7 @@
 import { Readable } from 'node:stream';
 import { IEncodedTree } from './tree';
 
-function encodeBase128(n: number): Buffer
+function encodeBase128(n: number): Uint8Array
 {
 	const a: number[] = [];
 
@@ -11,13 +11,13 @@ function encodeBase128(n: number): Buffer
 	}
 
 	a.push(n);
-	return Buffer.from(a);
+	return Uint8Array.from(a);
 }
 
-function joinTree(tr: IEncodedTree, a: Buffer[]): void
+function joinTree(tr: IEncodedTree, a: Uint8Array[]): void
 {
 	a.push(encodeBase128(tr.value.length));
-	a.push(Buffer.from(tr.value)); // TODO copy should be eliminated
+	a.push(tr.value);
 	a.push(encodeBase128(tr.children.length));
 
 	for (const child of tr.children) {
@@ -27,7 +27,7 @@ function joinTree(tr: IEncodedTree, a: Buffer[]): void
 
 export function encodeTree(tr: IEncodedTree): Buffer
 {
-	const a: Buffer[] = [];
+	const a: Uint8Array[] = [];
 	joinTree(tr, a);
 	return Buffer.concat(a);
 }
@@ -74,14 +74,12 @@ export class TreeWriter extends Readable
 
 	_read(size: number): void
  	{
-		console.log('TreeWriter _read');
 		this.#isReadRequested = true;
 		this.#tryPush();
 	}
 
 	_destroy(err: Error | null, callback: Function): void
 	{
-		console.log('TreeWriter _destroy');
 		this.#isComplete = true;
 
 		if (err)
@@ -108,12 +106,10 @@ export class TreeWriter extends Readable
 
 		if (this.#canPushData)
 		{
-			console.log('TreeWriter pushing data');
 			this.push(encodeTree(this.#treeQueue.shift()));
 		}
 		else
 		{
-			console.log('TreeWriter pushing null');
 			this.push(null);
 			// this is ridiculous. documentation on how to call destroy callback
 			// doesn't exist at time of writing and calling destroy in same

@@ -4,7 +4,7 @@ import { IEncodedTree, IDecodableTree } from './tree';
 export const Empty: ITreeable<null> = {
 	gtreeEncode(val?: null): IEncodedTree
 	{
-		return {value:Buffer.alloc(0), children:[]};
+		return {value:new Uint8Array(), children:[]};
 	},
 
 	gtreeDecode(tr: IDecodableTree): null

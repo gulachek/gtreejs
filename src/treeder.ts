@@ -155,7 +155,6 @@ export class Treeder extends Writable
 			this.#rej = rej;
 		});
 
-		console.log('#read');
 		this.#tryRead();
 
 		return p;
@@ -209,7 +208,6 @@ export class Treeder extends Writable
 
 	_write(chunk: Buffer, encoding: string, callback: Function): void
 	{
-		console.log('_write');
 		this.#buf.push(chunk);
 		this.#tryRead();
 		callback();
@@ -217,7 +215,6 @@ export class Treeder extends Writable
 
 	_final(callback: Function): void
 	{
-		console.log('_final');
 		this.#isComplete = true;
 		this.#tryRead();
 		callback();
@@ -225,14 +222,12 @@ export class Treeder extends Writable
 
 	_destroy(err: Error, callback: Function): void
 	{
-		console.log('_destroy');
 		callback(err);
 	}
 
 	#tryRead(): void
  	{
 		// check if read is in progress
-		console.log('tryRead', this.#isComplete);
 		if (!this.#res) {
 			return;
 		}

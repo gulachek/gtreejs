@@ -24,7 +24,7 @@ export class Tuple<TObj> implements ITreeable<TObj>
 
 	gtreeEncode(obj: TObj): IEncodedTree
 	{
-		const out: IEncodedTree = {value:Buffer.alloc(0), children:[]};
+		const out: IEncodedTree = {value:new Uint8Array(), children:[]};
 		for (const [name, enc] of this.mems)
 			out.children.push(enc.gtreeEncode(obj[name]));
 
