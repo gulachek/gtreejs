@@ -12,7 +12,7 @@ import * as fs from 'node:fs';
 export function writeStreamTree(w: Writable, tr: IEncodedTree): Promise<void>
 {
 	return new Promise((res, rej) => {
-		w.on('end', res);
+		w.on('close', res);
 		w.on('error', rej);
 
 		const tw = new TreeWriter();
